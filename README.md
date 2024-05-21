@@ -152,6 +152,8 @@ You can replace field names in filters, fields, and sorting using the `ReplaceNa
 ```go
 q.ReplaceNames(rqp.Replacer{"created_at": "DATE(created_at)"})
 ```
+## **[Guide for Frontend Developers](./docs/frontend-guide.md)**
+
 
 ## License
 
