@@ -26,15 +26,15 @@ import (
 	"fmt"
 	"net/url"
 
-	rqp "github.com/nex-gen-tech/qp"
+	"github.com/nex-gen-tech/qp"
 )
 
 func main() {
 	url, _ := url.Parse("http://localhost/?sort=name,-id&limit=10&id=1&i[eq]=5&s[eq]=one&email[like]=*tim*|name[like]=*tim*")
-	q, _ := rqp.NewParse(url.Query(), rqp.Validations{
-		"limit:required": rqp.MinMax(10, 100), // limit must be present and between 10 and 100
-		"sort":           rqp.In("id", "name"),   // sort could be "id" or "name"
-		"s":              rqp.In("one", "two"),   // filter: s - string with equal comparison
+	q, _ := qp.NewParse(url.Query(), qp.Validations{
+		"limit:required": qp.MinMax(10, 100), // limit must be present and between 10 and 100
+		"sort":           qp.In("id", "name"),   // sort could be "id" or "name"
+		"s":              qp.In("one", "two"),   // filter: s - string with equal comparison
 		"id:int":         nil,                   // filter: id is an integer without additional validation
 		"i:int": func(value interface{}) error { // custom validation function for "i"
 			if value.(int) > 1 && value.(int) < 10 {
